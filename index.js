@@ -6,6 +6,9 @@ const bodyparser = require("body-parser");
 const https = require("https");
 
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+
 app.get("/", function (req, res) {
 
     res.sendFile(__dirname+"/index.html");
@@ -27,7 +30,7 @@ app.post("/",function(req,res){
             const des = weatherapi.weather[0].description;
             const image = weatherapi.weather[0].icon;
 
-            res.write("<h1> The temperature in "  +city+ " is "  + tempe + " celcius </h1>");
+            res.write( "<h1> The temperature in "  +city+ " is "  + tempe + " celcius  </h1>");
             res.write("<p>The clouds are " + des + "</p> ");
             res.send();
 
